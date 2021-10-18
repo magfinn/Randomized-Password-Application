@@ -16,9 +16,9 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
-var confirmUppercase = [ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',  'S', 'T', 'U', 'V', 'W', 'X','Y', 'Z' ];
+var confirmUppercase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',  'S', 'T', 'U', 'V', 'W', 'X','Y', 'Z'];
 
 var confirmNumbers = [0,1,2,3,4,5,6,7,8,9];
 
@@ -29,12 +29,13 @@ var possibleOutcomes = ("all possible outputs" + confirmCharacters + confirmNumb
 function generatePassword () {
   console.log (possibleOutcomes);
   window.alert ("your password is ready");
-}
+};
 
-function password() {
-password= Math.floor (Math.random()* length);
-console.log (password);
-}
+function password () {
+  numbers + alphabet + characters + upperCase;
+  document.write (password);
+};
+
 
 
 
@@ -51,42 +52,56 @@ var length = function () {
   if (promptLength>8 && promptLength<129) {
     console.log (promptLength);
     upperCase ();
-  } else {
+    } else if (promptLength < 9 || promptLength >128) {
     window.alert("Please choose a number between 9-128");
-    length();
-  }
-}
+    return length();
+    };
+  };
 
 //input upperCase letters
 var upperCase = function () {
   var promptUppercase = window.prompt ("Should we include uppercase letters?");
   if (promptUppercase ==="yes" || promptUppercase === "Yes") {
-    console.log (confirmUppercase);
+    upperCase=confirmUppercase;
+    console.log (upperCase);
+  } else if (promptUppercase ==="No" || promptUppercase === "no") {
+    upperCase=[];
+    console.log (upperCase);
   } else {
-    numbers();
+    window.alert ("Please answer 'yes' or 'no'");
+    return upperCase ();
   }
-}
+};
 
 //input numbers
 var numbers = function () {
   var promptNumbers = window.prompt ("Would you like to include numbers in your password? (please type 'yes' or 'no')");
   if (promptNumbers === "yes" ||  promptNumbers === "Yes") {
+    numbers= confirmNumbers;
     console.log (confirmNumbers);
+  } else if (promptNumbers === "no" || promptNumbers === "No") {
+    numbers= [];
+    console.log (numbers);
   } else {
-    characters();
+    window.alert ("Please answer 'yes' or 'no'")
+    return numbers ();
   }
-}
+};
 
 //input special characters
 var characters = function () {
   var promptCharacters = window.prompt ("How about special characters (yes or no)");
   if(promptCharacters === "yes" || promptCharacters === "Yes") {
+    characters = confirmCharacters;
     console.log (confirmCharacters);
     generatePassword ();
+  } else if (promptCharacters === "no" || promptCharacters === "No") {
+    characters = [];
   } else {
-    generatePassword();
-  }
-} 
+    window.alert ("Please answer 'yes' or 'no'");
+    return characters ();
+  };
+};
 
 length ();
 
