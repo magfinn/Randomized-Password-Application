@@ -31,6 +31,13 @@ function generatePassword () {
   window.alert ("your password is ready");
 }
 
+function password() {
+password= Math.floor (Math.random()* length);
+console.log (password);
+}
+
+
+
 
 //when the user clicks on generate password
 
@@ -80,7 +87,13 @@ var characters = function () {
     generatePassword();
   }
 } 
+
 length ();
+
 numbers ();
+
 characters();
+
 generatePassword ();
+
+password ();
