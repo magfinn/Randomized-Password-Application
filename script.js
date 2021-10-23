@@ -1,116 +1,79 @@
-//if (promptLength = Cancel){
-  //var confirmCancel = 
-  //window.confirm ("Are you sure you would like to cancel your password generation?");
-  
-//if yes, then cancel
-//if(confirmCancel) {
-  //window.alert("See you next time!");
-  //console.log ("cancelled");
-//} else {
-  //promptUppercase;
-//}
-  //how do you end the submission?
-//}
 
-
-// Assignment Code
 var generateBtn = document.querySelector("#generate");
+var passwordEl = document.querySelector ('#password');
+var password = 
+generatePassword () = password;
+promptLength () = length;
+promptUppercase ()= uppercase;
+promptNumbers () = numbers;
+promptCharacters () = characters;
+//define characters for password
+//yes answers to prompts add the array to the password string, no answers add ""//
+const lowerCaseConst = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+const upperCaseConst = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+const numbersConst = ['0','1','2','3','4','5','6','7','8','9'];
+const charactersConst = ['"','.','!',':','@','#','$','%','^','&','*','(',')','_','+','-','='];
 
-const lowerCase = ("abcdefghijklmnopqrstuvwxyz");
+//window prompts//
+//prompt length
+var promptLength = function () {
+  window.prompt ("How long do you want your password to be (choose a number between 9-128)");
+  if (promptLength < 9 || promptLength >128) {
+    window.alert("Please choose a number between 9-128");
+};
 
-const upperCase = ("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-
-const numbers = ("0123456789");
-
-const characters = (".!:@#$%^&*()_+-=")
-
-var possibleOutcomes = ("all possible outputs " + confirmCharacters + confirmNumbers + confirmUppercase + lowerCase);
-
-
-//when the user clicks on generate password
-
-//create eventListener for onclick generate password button
-
-
-//input length
-
-var confirmLength = function () {
-  var promptLength = window.prompt ("How long do you want your password to be (choose a number between 9-128)");
-  //if length is within parameters, move on
-  if (promptLength>8 && promptLength<129) {
-      confirmLength = promptLength;
-      console.log (promptLength);
-      confirmUppercase ();
-    } else if (promptLength < 9 || promptLength >128) {
-      window.alert("Please choose a number between 9-128");
-      return confirmLength();
-    };
-  };
-
-//input upperCase letters
-var confirmUppercase = function () {
-  var promptUppercase = window.prompt ("Would you like your password to include uppercase letters (yes or no)?");
+//prompt case value
+var promptUppercase = function () {
+  window.prompt ("Would you like your password to include uppercase letters (yes or no)?");
   if (promptUppercase ==="yes" || promptUppercase === "Yes") {
-    confirmUppercase=upperCase;
-    console.log (upperCase);
-    confirmNumbers();
+    promptUppercase = upperCaseConst;
+    console.log (promptUppercase)
   } else if (promptUppercase ==="No" || promptUppercase === "no")  {
-      confirmUppercase=("");
-      console.log (confirmUppercase);
-      confirmNumbers();
+      promptUppercase = ("");
+  //if user does not provide a yes or no answer, alert and send back to prompt
   } else {
       window.alert ("Please answer 'yes' or 'no'");
-      return confirmUppercase();
-  }
+      return;
 };
-
-//input numbers
-var confirmNumbers = function() {
-  var promptNumbers = window.prompt ("Would you like to include numbers in your password (yes or no)?");
+//prompt numbers
+var promptNumbers = function () {
+  window.prompt ("Would you lie to incude numbers in your password (yes or no)?");
   if (promptNumbers === "yes" ||  promptNumbers === "Yes") {
-    confirmNumbers= (numbers);
-    console.log (numbers);
-    confirmCharacters();
-  } else if (promptNumbers === "no" || promptNumbers === "No") {
-    confirmNumbers= ("");
-    console.log (confirmNumbers);
-    confirmCharacters();
-  } else {
-    window.alert ("Please answer 'yes' or 'no'")
-    return confirmNumbers ();
-  }
-};
-
-//input special characters
-var confirmCharacters = function () {
-  var promptCharacters = window.prompt ("Would you like to include speical characters (yes or no)?");
-  if(promptCharacters === "yes" || promptCharacters === "Yes") {
-    confirmCharacters = characters;
-    console.log (characters);
-    possibleOutcomes();
-    generatePassword();
-  } else if (promptCharacters === "no" || promptCharacters === "No") {
-    confirmCharacters = ("");
-    possibleOutcomes ();
-    generatePassword ();
-  } else {
-    window.alert ("Please answer 'yes' or 'no'");
-    return confirmCharacters ();
+    promptNumbers = numbersConst;
+    console.log (promptNumbers);
+  } else if (promptNumbers == "no" || promptNumbers == "No") {
+    promptNumbers = "";
   };
 };
+//prompt special characters
+var promptCharacters = function () {
+  window.prompt ("Would you like to include special characters (such as !@#$%)?");
+  if (promptNumbers === "yes" ||  promptNumbers === "Yes") {
+    promptCharacters = charactersConst;
+    console.log (promptNumbers);
+  } else if (promptNumbers == "no" || promptNumbers == "No") {
+    promptCharacters = "";
+  };
+};
+var prompts = [promptLength, promptNumbers, promptUppercase, promptCharacters];
+var passwordString = "promptCharacters, promptNumbers, promptUppercase, lowerCase";
 
-//generate password
 var generatePassword = function () {
-  window.alert ("Your password is ready!");
-  print.card-body (possibleOutcomes);
-}
+    for (let i= 0; i < length; i++) {
+      password += passwordString.charAt(
+      Math.floor(Math.random()) * passwordString);
+      };
+      console.log(generatePassword);
+};
 
-confirmLength ();
+//click button to begin prompts//
 
-//confirmNumbers ();
+var startPrompts = function () {
+ for (let i = 0; i < prompts.length; i++) {
+   prompts = array[i];
+ } if (i<prompts.length){
+   generatePassword ();
+ } console.log (prompts [i]);
+};
 
-//confirmCharacters();
-
-//generatePassword ();
-
-//possibleOutcomes ();
+generateBtn.addEventListener("click", startPrompts())
