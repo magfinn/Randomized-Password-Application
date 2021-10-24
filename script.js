@@ -1,86 +1,71 @@
-//if (promptLength = Cancel){
-  //var confirmCancel = 
-  //window.confirm ("Are you sure you would like to cancel your password generation?");
-  
-//if yes, then cancel
-//if(confirmCancel) {
-  //window.alert("See you next time!");
-  //console.log ("cancelled");
-//} else {
-  //promptUppercase;
-//}
-  //how do you end the submission?
-//}
 
+var generateBtnEl = document.getElementById("generate");
+var passwordEl = document.getElementById("password");
 
-// Assignment Code
-var generateBtn = document.querySelector("#generate");
+//define characters for password
 
-var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+const lowerCaseConst = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+const upperCaseConst = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+const numbersConst = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+const charactersConst = ['"', '.', '!', ':', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '-', '=']
 
-var confirmUppercase = [ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',  'S', 'T', 'U', 'V', 'W', 'X','Y', 'Z' ];
+var passWordLength;
 
-var confirmNumbers = [0,1,2,3,4,5,6,7,8,9];
+var useUpper = false;
+var useNumbers = false;
+var useSpecial = false;
 
-var confirmCharacters = [".","!",":","@","#","$","%","^","&","*","(",")","_","+","-","="];
+//window prompts//
 
-var possibleOutcomes = ("all possible outputs" + confirmCharacters + confirmNumbers + confirmUppercase + alphabet);
-
-function generatePassword () {
-  console.log (possibleOutcomes);
-  window.alert ("your password is ready");
-}
-
-
-//when the user clicks on generate password
-
-//create eventListener for onclick generate password button
-
-//input length
-
-var length = function () {
-  var promptLength = window.prompt ("How long do you want your password to be (choose a number between 9-128)");
-  //if length is within parameters, move on
-  if (promptLength>8 && promptLength<129) {
-    console.log (promptLength);
-    upperCase ();
-  } else {
+var promptLength = function () {
+  passWordLength = parseInt(window.prompt("How long do you want your password to be (choose a number between 9-128)?"));
+  if (isNaN(passWordLength)) {
+    window.alert("Pleae use only numbers");
+    passWordLength = parseInt(window.prompt("How long do you want your password to be (choose a number between 9-128)?"))
+  }
+  while (passWordLength < 9 || passWordLength > 128) {
     window.alert("Please choose a number between 9-128");
-    length();
-  }
-}
+    passWordLength = parseInt(window.prompt("How long do you want your password to be (choose a number between 9-128)?"));
+  };
+};
 
-//input upperCase letters
-var upperCase = function () {
-  var promptUppercase = window.prompt ("Should we include uppercase letters?");
-  if (promptUppercase ==="yes" || promptUppercase === "Yes") {
-    console.log (confirmUppercase);
-  } else {
-    numbers();
-  }
-}
+var promptUppercase = function () {
+  useUpper = window.confirm("Would you like your password to include uppercase letters? (select ok for yes and cancel for no)");
+};
+var promptNumbers = function () {
+  useNumbers = window.confirm("Would you like to incude numbers in your password? (select ok for yes and cancel for no)");
+};
+var promptCharacters = function () {
+  useSpecial = window.confirm("Would you like to include special characters (such as !@#$%)? (select ok for yes and cancel for no)");
+};
 
-//input numbers
-var numbers = function () {
-  var promptNumbers = window.prompt ("Would you like to include numbers in your password? (please type 'yes' or 'no')");
-  if (promptNumbers === "yes" ||  promptNumbers === "Yes") {
-    console.log (confirmNumbers);
-  } else {
-    characters();
-  }
-}
+function generatePassword() {
+  promptLength();
 
-//input special characters
-var characters = function () {
-  var promptCharacters = window.prompt ("How about special characters (yes or no)");
-  if(promptCharacters === "yes" || promptCharacters === "Yes") {
-    console.log (confirmCharacters);
-    generatePassword ();
-  } else {
-    generatePassword();
+  promptUppercase();
+  promptNumbers();
+  promptCharacters();
+
+  const passWordLetters = [lowerCaseConst];
+
+  if (useUpper) {
+    passWordLetters.push(upperCaseConst);
   }
-} 
-length ();
-numbers ();
-characters();
-generatePassword ();
+  if (useNumbers) {
+    passWordLetters.push(numbersConst);
+  }
+  if (useSpecial) {
+    passWordLetters.push(charactersConst);
+  }
+
+  var password = "";
+
+  // run as long as the user wants their password to be
+  for (let i = 0; i < passWordLength; i++) {
+    const charactersArray = passWordLetters[i % passWordLetters.length];
+    const randomCharacter = charactersArray[Math.floor(Math.random() * charactersArray.length)];
+    password += randomCharacter;
+  passwordEl.textContent = password;
+  };
+};
+document.getElementById("generate").addEventListener("click", generatePassword);
