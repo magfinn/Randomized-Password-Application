@@ -26,7 +26,7 @@ var promptLength = function () {
   while (passWordLength < 9 || passWordLength > 128) {
     window.alert("Please choose a number between 9-128");
     passWordLength = parseInt(window.prompt("How long do you want your password to be (choose a number between 9-128)?"));
-  };
+  }
 };
 
 var promptUppercase = function () {
@@ -66,6 +66,6 @@ function generatePassword() {
     const randomCharacter = charactersArray[Math.floor(Math.random() * charactersArray.length)];
     password += randomCharacter;
   passwordEl.textContent = password;
-  };
+  }
 };
 document.getElementById("generate").addEventListener("click", generatePassword);
