@@ -3,11 +3,11 @@ var generateBtnEl = document.getElementById("generate");
 var passwordEl = document.getElementById("password");
 
 //define characters for password
+
 const lowerCaseConst = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 const upperCaseConst = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 const numbersConst = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 const charactersConst = ['"', '.', '!', ':', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '-', '=']
-
 
 var passWordLength;
 
@@ -16,6 +16,7 @@ var useNumbers = false;
 var useSpecial = false;
 
 //window prompts//
+
 var promptLength = function () {
   passWordLength = parseInt(window.prompt("How long do you want your password to be (choose a number between 9-128)?"));
   if (isNaN(passWordLength)) {
@@ -36,8 +37,6 @@ var promptNumbers = function () {
 };
 var promptCharacters = function () {
   useSpecial = window.confirm("Would you like to include special characters (such as !@#$%)? (select ok for yes and cancel for no)");
-};
-// var prompts= [promptLength, promptNumbers, promptCharacters, promptUppercase];
 
 function generatePassword() {
   promptLength();
